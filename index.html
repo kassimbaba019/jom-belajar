@@ -13,13 +13,14 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;background:#6C4DFF;background:linear-gradient(160deg,var(--b1),var(--b2) 58%,var(--b3));background-attachment:fixed;color:#fff;font-family:"Baloo 2","Trebuchet MS",system-ui,sans-serif;font-weight:700}
-button{font:inherit;color:inherit;cursor:pointer;border:0}
+button{font:inherit;color:inherit;cursor:pointer;border:0;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 button:focus-visible,select:focus-visible{outline:4px solid #fff;outline-offset:3px}
-header{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 16px;max-width:780px;margin:0 auto}
-.lang{display:flex;gap:6px}
-.lang button{padding:8px 14px;border-radius:99px;background:rgba(255,255,255,.22);min-height:44px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 8px;padding:12px 16px;max-width:780px;margin:0 auto}
+.lang{display:flex;gap:6px;flex:0 1 auto;min-width:0;position:relative;z-index:2}
+.lang button{padding:8px 12px;border-radius:99px;background:rgba(255,255,255,.22);min-height:44px;white-space:nowrap}
 .lang button[aria-pressed="true"]{background:#fff;color:#2B1B5E}
-.hr{display:flex;align-items:center;gap:10px}
+.hr{display:flex;align-items:center;gap:10px;flex:0 0 auto;margin-left:auto;position:relative;z-index:1}
+@media (max-width:380px){.lang button{padding:8px 10px;font-size:.92rem}.stars{font-size:1.25rem}.vbtn{width:44px;height:44px}.hr{gap:6px}}
 .stars{font-size:1.5rem}
 .vbtn{background:var(--sun);color:#2B1B5E;border-radius:50%;width:48px;height:48px;font-size:1.3rem}
 .vp{display:flex;gap:8px;align-items:center;max-width:780px;margin:0 auto;padding:0 16px 8px}
@@ -115,6 +116,14 @@ h1{font-size:clamp(2.6rem,10vw,4.4rem);margin:6px 0;line-height:1;text-shadow:0 
 .stkc.gold,.newst.gold .stk{background:radial-gradient(circle at 30% 18%,#1FA39A,#06403F 78%);box-shadow:0 5px 0 rgba(0,0,0,.25),inset 0 0 0 2.5px #E9C46A}.stkc.gold small{color:#F6E2A0}
 .stkc.gold::after{content:"✨";position:absolute;top:-8px;right:-5px;font-size:1.2rem}
 .stkc.pop svg{animation:stkpop .5s}
+.stkov{position:fixed;inset:0;z-index:60;background:rgba(10,5,30,.55);animation:ovin .25s both}
+.stkov.out{animation:ovout .4s both}@keyframes ovin{from{opacity:0}to{opacity:1}}@keyframes ovout{to{opacity:0}}
+.stkbig{position:fixed;transform-origin:0 0;background:var(--panel);border-radius:34px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--ink);box-shadow:0 10px 0 rgba(0,0,0,.25),0 0 40px rgba(255,255,255,.35);padding:16px}
+.stkbig svg{width:78%;height:auto;display:block}.stkbig small{font-size:1.25rem;font-weight:800;margin-top:6px}
+.stkbig.gold{background:radial-gradient(circle at 30% 18%,#1FA39A,#06403F 78%);box-shadow:0 10px 0 rgba(0,0,0,.25),inset 0 0 0 4px #E9C46A,0 0 46px rgba(233,196,106,.7)}.stkbig.gold small{color:#F6E2A0}
+.stkov .sp{position:fixed;font-size:1.8rem;pointer-events:none;animation:twk 1s ease-in-out infinite}
+.stkc.lift{visibility:hidden}
+
 .newst .stk{width:clamp(140px,44vw,190px);margin:8px auto 4px;background:var(--panel);border-radius:30px;padding:14px;box-shadow:0 8px 0 rgba(0,0,0,.2);animation:stkpop .8s}
 .newst.gold .stk{box-shadow:0 0 0 6px rgba(233,196,106,.35),0 0 38px rgba(233,196,106,.65),inset 0 0 0 4px #E9C46A}
 .newst .stk svg{width:100%;height:auto;display:block}
@@ -136,6 +145,20 @@ h1{font-size:clamp(2.6rem,10vw,4.4rem);margin:6px 0;line-height:1;text-shadow:0 
 .sen{display:flex;align-items:center;justify-content:center;gap:8px;font-size:clamp(1.15rem,4.8vw,1.55rem);color:var(--ink);line-height:1.25;margin:2px 0 6px;text-align:left}.say.sm{width:44px;height:44px;font-size:1.2rem}
 .sbl{display:inline-block;min-width:3.2em;border-bottom:4px solid var(--b2);text-align:center;color:#C2185B;font-weight:800}
 .hl{color:#2B1B5E;background:#F2EEFF;border-radius:12px;border-bottom:0;box-shadow:0 4px 0 rgba(0,0,0,.14)}.hl.on{background:#FFE98A;color:#2B1B5E}.hl.new{animation:pop .45s}
+.hls{background:linear-gradient(180deg,#5A3BD0,#2B1B5E);border-radius:22px;padding:16px 10px 18px;gap:8px;margin:8px 0 14px;box-shadow:0 6px 0 rgba(0,0,0,.28),0 0 0 3px #fff,0 0 22px rgba(123,77,255,.55)}
+.hl{width:clamp(32px,10.4vw,52px);height:clamp(48px,13.5vw,66px);font-size:clamp(2rem,8.2vw,3rem);font-weight:800;line-height:1.55;background:#fff;color:#2B1B5E;border-radius:14px;box-shadow:inset 0 -7px 0 #C9BDFF,0 4px 0 rgba(0,0,0,.3)}
+.hl.on{background:linear-gradient(180deg,#8BFFBE,#2ED47A);color:#05402A;box-shadow:inset 0 -7px 0 rgba(0,0,0,.15),0 4px 0 rgba(0,0,0,.3)}
+.keys .key{min-height:42px;font-size:1.15rem}
+.hls{position:relative;background:radial-gradient(circle at 30% 18%,#2B3F9E,#0A1233 78%);box-shadow:0 6px 0 rgba(0,0,0,.28),inset 0 0 0 3px #9FC3FF,0 0 24px rgba(110,160,255,.6)}
+.hls::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);background-size:250% 100%;background-position:130% 0;animation:shim 3.4s ease-in-out infinite}
+@keyframes shim{0%{background-position:130% 0}60%,100%{background-position:-60% 0}}
+.spk{position:absolute;font-style:normal;pointer-events:none;line-height:1;animation:twk 1.8s ease-in-out infinite}
+.spk.a{top:-12px;right:-6px;font-size:1.5rem}.spk.b{top:-8px;left:10px;font-size:1.1rem;animation-delay:.6s}.spk.c{bottom:-10px;right:22%;font-size:1.2rem;animation-delay:1.1s}.spk.d{bottom:-8px;left:-5px;font-size:1.3rem;animation-delay:.3s}
+@keyframes twk{0%,100%{transform:scale(.55) rotate(0);opacity:.55}50%{transform:scale(1.15) rotate(25deg);opacity:1}}
+.hl{background:#fff;color:#0A1233;box-shadow:inset 0 -7px 0 #CFDCFF,0 4px 0 rgba(0,0,0,.3)}
+.hl.on{background:linear-gradient(180deg,#E6F6FF,#7FC8FF);color:#0A1233;box-shadow:inset 0 -7px 0 rgba(20,60,140,.22),0 4px 0 rgba(0,0,0,.3),0 0 14px rgba(150,210,255,.9)}
+.hl.new{animation:hlpop .6s}@keyframes hlpop{0%{transform:scale(.4) rotate(-12deg)}55%{transform:scale(1.3) rotate(6deg)}100%{transform:scale(1) rotate(0)}}
+@media (prefers-reduced-motion:reduce){.hls::before,.spk{animation:none}}
 .key{box-shadow:0 4px 0 rgba(0,0,0,.28);text-shadow:0 2px 0 rgba(0,0,0,.2)}.key.good{background:var(--c2)!important}.key.miss{background:#999!important}
 .str,.bal{transition:opacity .25s,transform .3s;transform-box:fill-box;transform-origin:center}.str.gone{opacity:0}
 .grp{transition:none}.grp.drop{animation:dunk 1.3s cubic-bezier(.45,0,.9,.55) forwards}@keyframes dunk{0%{transform:translateY(0)}34%{transform:translateY(58px)}60%{transform:translateY(40px)}100%{transform:translateY(20px)}}
@@ -158,7 +181,7 @@ h1{font-size:clamp(2.6rem,10vw,4.4rem);margin:6px 0;line-height:1;text-shadow:0 
 <script>
 const L={
  en:{t:"Let's learn!",s:"Pick a game and collect stickers!",g:[["Counting","Count and add up"],["Letters","Find and match letters"],["Colours & Shapes","Colours, shapes, patterns"],["Syllables & Words","Sounds and reading"],["Tracing","Learn to write correctly"],["Bubble Blaster","Aim and shoot the answer"],null,["Animal Hunt","Find the animal with the answer"],["Spell It!","Hangman with action words"],["Mix It Up!","A bit of every game"]],q:["How many?"],hg:"Spell the action word!",hgs:"Spell",hgw:"The word is",find:"Find the letter ",smallf:"Find the small letter ",findc:"Find the ",sylq:"What does it start with?",sylE:"What does it end with?",miss:"Which part is missing?",pic:"Which picture is it?",wrd:"Which word is this?",tl:"Trace the letter ",tn:"Trace the number ",aimh:"Drag to aim, then tap to shoot! 🎯",tls:"Trace the small letter ",zero:"zero",pn:"Pop the number ",pl:"Pop the letter ",pp:"Pop the small letter ",pe:"Pop the answer: ",nx:"What comes next?",ad:"How many altogether?",sb:"How many are left?",plus:"plus",minus:"minus",eqs:"equals",mt:"Which small letter is this?",mu:"Which big letter is this?",af:"What comes after ",bf:"What comes before ",st:"Start at the green dot 🟢",top:"Start at the top! Touch the green dot ⬆️",dot:"Start at the green dot!",nextl:"Now the next line!",age:"How old are you?",tw:"Trace the word ",nlet:"Now the next letter!",par:"Parents",parT:"Parent Corner",gateq:"Grown-ups only. What is ",nogo:"Not quite. Try again.",stat1:"Stickers",stat2:"Games finished",stat3:"Times played",strong:"Doing best at",practice:"Needs more practice",recent:"Recent activity",none:"Not played yet",lvl:"Level",best:"Best",last:"Last played",reset:"Reset progress",sure:"Tap again to confirm",done2:"Finished",pnote:"Scores are saved on this device only.",an:"Find the animal with the number ",al:"Find the animal with the letter ",as:"Find the animal with the small letter ",ae:"Find the animal with the answer: ",book:"Sticker Book",newst:"New sticker!",goldst:"Shiny sticker!",nost:"Get half the stars to win a sticker!",fullb:"Your sticker book is full!",yrs:"years old",ageb:"Age ",ok:["Great job!","Yay!","Super!"],no:"Try again!",done:"You did it!",again:"Play again",w:["one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"],v:"en-US",c:["red","blue","yellow","green","orange","purple","pink","brown"],sh:["circle","square","triangle","star","heart","oval","diamond","hexagon"]},
- ms:{t:"Jom belajar!",s:"Pilih permainan dan kumpul pelekat!",g:[["Mengira","Kira dan tambah"],["Kenali Huruf","Cari dan padan huruf"],["Warna & Bentuk","Warna, bentuk, corak"],["Suku Kata & Bacaan","Bunyi dan membaca"],["Menyurih","Menulis dengan betul!"],["Tembak Buih","Bidik dan tembak jawapan"],null,["Memburu Haiwan","Cari haiwan dengan jawapan"],["Eja Kata Kerja","Teka huruf, eja perkataan"],["Campuran","Sedikit setiap permainan"]],q:["Berapa banyak?"],hg:"Eja kata kerja ini!",hgs:"Eja",hgw:"Perkataannya",find:"Cari huruf ",smallf:"Cari huruf kecil ",findc:"Cari ",sylq:"Bermula dengan apa?",sylE:"Berakhir dengan apa?",miss:"Bahagian mana yang hilang?",pic:"Gambar yang mana?",wrd:"Perkataan yang mana?",tl:"Surih huruf ",tn:"Surih nombor ",aimh:"Seret untuk sasar, kemudian ketik untuk tembak! 🎯",tls:"Surih huruf kecil ",zero:"kosong",pn:"Tembak nombor ",pl:"Tembak huruf ",pp:"Tembak huruf kecil ",pe:"Tembak jawapan: ",nx:"Apa seterusnya?",ad:"Berapa semuanya?",sb:"Berapa yang tinggal?",plus:"tambah",minus:"tolak",eqs:"sama dengan",mt:"Huruf kecil yang mana?",mu:"Huruf besar yang mana?",af:"Apa selepas ",bf:"Apa sebelum ",st:"Mula di titik hijau 🟢",top:"Mula dari atas! Sentuh titik hijau ⬆️",dot:"Mula di titik hijau!",nextl:"Sekarang garisan seterusnya!",age:"Berapa umur kamu?",tw:"Surih perkataan ",nlet:"Sekarang huruf seterusnya!",par:"Ibu Bapa",parT:"Sudut Ibu Bapa",gateq:"Untuk orang dewasa. Berapa ",nogo:"Belum tepat. Cuba lagi.",stat1:"Pelekat",stat2:"Permainan selesai",stat3:"Kali bermain",strong:"Paling baik dalam",practice:"Perlu lebih latihan",recent:"Aktiviti terkini",none:"Belum dimainkan",lvl:"Tahap",best:"Terbaik",last:"Terakhir dimainkan",reset:"Set semula kemajuan",sure:"Tekan sekali lagi untuk sahkan",done2:"Selesai",pnote:"Skor disimpan pada peranti ini sahaja.",an:"Cari haiwan dengan nombor ",al:"Cari haiwan dengan huruf ",as:"Cari haiwan dengan huruf kecil ",ae:"Cari haiwan dengan jawapan: ",book:"Buku Pelekat",newst:"Pelekat baru!",goldst:"Pelekat berkilat!",nost:"Dapatkan separuh bintang untuk menang pelekat!",fullb:"Buku pelekat kamu sudah penuh!",yrs:"tahun",ageb:"Umur ",ok:["Bagus!","Hebat!","Pandai!"],no:"Cuba lagi!",done:"Kamu berjaya!",again:"Main lagi",w:["satu","dua","tiga","empat","lima","enam","tujuh","lapan","sembilan","sepuluh","sebelas","dua belas","tiga belas","empat belas","lima belas","enam belas","tujuh belas","lapan belas","sembilan belas","dua puluh"],v:"ms-MY",c:["merah","biru","kuning","hijau","oren","ungu","merah jambu","coklat"],sh:["bulatan","segi empat sama","segi tiga","bintang","hati","bujur","berlian","heksagon"]}
+ ms:{t:"Jom belajar!",s:"Pilih permainan dan kumpul stiker!",g:[["Mengira","Kira dan tambah"],["Kenali Huruf","Cari dan padan huruf"],["Warna & Bentuk","Warna, bentuk, corak"],["Suku Kata & Baca","Bunyi dan membaca"],["Menyurih","Menulis dengan betul!"],["Tembak Buih","Bidik dan tembak jawapan"],null,["Memburu Haiwan","Cari haiwan dengan jawapan"],["Eja Perkataan","Teka huruf, eja perkataan"],["Game Campur","Main pelbagai game mini di sini!"]],q:["Berapa banyak?"],hg:"Eja perkataan ini!",hgs:"Eja",hgw:"Perkataannya",find:"Cari huruf ",smallf:"Cari huruf kecil ",findc:"Cari ",sylq:"Bermula dengan apa?",sylE:"Berakhir dengan apa?",miss:"Bahagian mana yang hilang?",pic:"Gambar yang mana?",wrd:"Perkataan yang mana?",tl:"Surih huruf ",tn:"Surih nombor ",aimh:"Seret untuk sasar, kemudian ketik untuk tembak! 🎯",tls:"Surih huruf kecil ",zero:"kosong",pn:"Tembak nombor ",pl:"Tembak huruf ",pp:"Tembak huruf kecil ",pe:"Tembak jawapan: ",nx:"Apa seterusnya?",ad:"Berapa semuanya?",sb:"Berapa yang tinggal?",plus:"tambah",minus:"tolak",eqs:"sama dengan",mt:"Huruf kecil yang mana?",mu:"Huruf besar yang mana?",af:"Apa selepas ",bf:"Apa sebelum ",st:"Mula di titik hijau 🟢",top:"Mula dari atas! Sentuh titik hijau ⬆️",dot:"Mula di titik hijau!",nextl:"Sekarang garisan seterusnya!",age:"Berapa umur kamu?",tw:"Surih perkataan ",nlet:"Sekarang huruf seterusnya!",par:"Ibu Bapa",parT:"Sudut Ibu Bapa",gateq:"Untuk orang dewasa. Berapa ",nogo:"Belum tepat. Cuba lagi.",stat1:"Stiker",stat2:"Permainan selesai",stat3:"Kali bermain",strong:"Paling baik dalam",practice:"Perlu lebih latihan",recent:"Aktiviti terkini",none:"Belum dimainkan",lvl:"Tahap",best:"Terbaik",last:"Terakhir dimainkan",reset:"Set semula kemajuan",sure:"Tekan sekali lagi untuk sahkan",done2:"Selesai",pnote:"Skor disimpan pada peranti ini sahaja.",an:"Cari haiwan dengan nombor ",al:"Cari haiwan dengan huruf ",as:"Cari haiwan dengan huruf kecil ",ae:"Cari haiwan dengan jawapan: ",book:"Buku Stiker",newst:"Stiker baru!",goldst:"Stiker berkilat!",nost:"Dapatkan separuh bintang untuk menang stiker!",fullb:"Buku stiker kamu sudah penuh!",yrs:"tahun",ageb:"Umur ",ok:["Bagus!","Hebat!","Pandai!"],no:"Cuba lagi!",done:"Kamu berjaya!",again:"Main lagi",w:["satu","dua","tiga","empat","lima","enam","tujuh","lapan","sembilan","sepuluh","sebelas","dua belas","tiga belas","empat belas","lima belas","enam belas","tujuh belas","lapan belas","sembilan belas","dua puluh"],v:"ms-MY",c:["merah","biru","kuning","hijau","oren","ungu","merah jambu","coklat"],sh:["bulatan","segi empat sama","segi tiga","bintang","hati","bujur","berlian","heksagon"]}
 };
 const COL=["#FF4D6D","#2D7DFF","#FFD21F","#2BBF6A","#FF8A1F","#9B5CFF","#FF8FD0","#9A5B2E"];
 const SHP=['<circle cx="50" cy="50" r="40"/>','<rect x="12" y="12" width="76" height="76" rx="8"/>','<polygon points="50,10 92,88 8,88"/>','<polygon points="50,6 61,38 95,38 67,58 78,92 50,71 22,92 33,58 5,38 39,38"/>','<path d="M50 90 C8 60 4 30 26 19 C40 13 50 24 50 32 C50 24 60 13 74 19 C96 30 92 60 50 90Z"/>','<ellipse cx="50" cy="50" rx="30" ry="42"/>','<polygon points="50,5 93,50 50,95 7,50"/>','<polygon points="27,10 73,10 97,50 73,90 27,90 3,50"/>'];
@@ -503,8 +526,8 @@ function hangUI(){const R=S.R,root=$("#hg");if(!root||!R||R.kind!=="hang")return
   const parts=R.sen.split("___");
   const blank=`<span class="sbl">${R.show||R.state==="win"?R.word:"_ _ _"}</span>`;
   root.querySelector(".sen").innerHTML=`<span>${parts[0]}${blank}${parts[1]||""}</span><button class="say sm" data-act="say" aria-label="🔊">🔊</button><button class="say sm" data-act="hint" aria-label="Hint">💡</button>`;
-  root.querySelector(".hls").innerHTML=w.split("").map(ch=>{const on=R.guess.includes(ch)||R.show;return `<span class="hl${on?" on":""}${ch===R.last&&on&&!R.show?" new":""}">${on?ch.toUpperCase():""}</span>`}).join("");
-  root.querySelector(".keys").innerHTML=ABC.split("").map((c,i)=>{const l=c.toLowerCase(),u=R.guess.includes(l),g=u&&w.includes(l);return `<button class="key${u?(g?" good":" miss"):""}" data-act="key" data-v="${l}" style="${u?"":`background:hsl(${(i*37+200)%360} 80% 56%)`}"${u||S.locked?" disabled":""}>${c}</button>`}).join("")}
+  root.querySelector(".hls").innerHTML='<i class="spk a">✨</i><i class="spk b">⭐</i><i class="spk c">✨</i><i class="spk d">⭐</i>'+w.split("").map(ch=>{const on=R.guess.includes(ch)||R.show;return `<span class="hl${on?" on":""}${ch===R.last&&on&&!R.show?" new":""}">${on?ch.toUpperCase():""}</span>`}).join("");
+  root.querySelector(".keys").innerHTML=ABC.split("").map((c,i)=>{const l=c.toLowerCase(),u=R.guess.includes(l),g=u&&w.includes(l);return `<button class="key${u?" miss":""}" data-act="key" data-v="${l}" style="${u?"":`background:hsl(${(i*37+200)%360} 50% 50%)`}"${u||S.locked?" disabled":""}>${c}</button>`}).join("")}
 function joySnd(){try{A();const t0=ctx.currentTime;
   [[0,520,840],[.17,600,960],[.34,680,1100],[.56,760,1250]].forEach(([dt,f1,f2])=>{const t=t0+dt,o=ctx.createOscillator(),lf=ctx.createOscillator(),lg=ctx.createGain(),g=ctx.createGain(),bp=ctx.createBiquadFilter();
     o.type="sawtooth";o.frequency.setValueAtTime(f1,t);o.frequency.exponentialRampToValueAtTime(f2,t+.12);lf.frequency.value=30;lg.gain.value=30;lf.connect(lg);lg.connect(o.frequency);
@@ -519,6 +542,20 @@ function monkeySad(){try{A();const t0=ctx.currentTime;
     o.type="sawtooth";o.frequency.setValueAtTime(f1,t);o.frequency.exponentialRampToValueAtTime(f2,t+.28);lf.frequency.value=22;lg.gain.value=26;lf.connect(lg);lg.connect(o.frequency);
     bp.type="bandpass";bp.frequency.value=1100;bp.Q.value=2.2;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.32,t+.04);g.gain.exponentialRampToValueAtTime(.001,t+.3);
     o.connect(bp);bp.connect(g);g.connect(ctx.destination);o.start(t);lf.start(t);o.stop(t+.32);lf.stop(t+.32)})}catch(e){}}
+function stkShow(b,i){
+  if(document.querySelector(".stkov"))return;
+  const o=STK[i],r=b.getBoundingClientRect(),gold=stk[o.id]===2,W=innerWidth,H=innerHeight,z=Math.min(300,W*.8,H*.6),L=(W-z)/2,T=(H-z)/2-10;
+  const ov=document.createElement("div");ov.className="stkov";
+  const big=document.createElement("div");big.className="stkbig"+(gold?" gold":"");big.style.cssText=`left:${L}px;top:${T}px;width:${z}px;height:${z}px`;
+  big.innerHTML=stkSvg(o)+`<small>${o[lang]}</small>`;ov.appendChild(big);
+  const pos=[[-.04,.02],[.98,-.02],[1.02,.5],[.94,1.0],[-.02,.95],[-.06,.5],[.5,-.06],[.5,1.06]];
+  pos.forEach((q,k)=>{const e=document.createElement("span");e.className="sp";e.textContent=k%3===1?"⭐":"✨";e.style.left=(L+q[0]*z-12)+"px";e.style.top=(T+q[1]*z-12)+"px";e.style.animationDelay=(k*.12)+"s";ov.appendChild(e)});
+  document.body.appendChild(ov);b.classList.add("lift");say(o[lang]);
+  const sx=r.width/z,sy=r.height/z,from=`translate(${r.left-L}px,${r.top-T}px) scale(${sx},${sy})`;
+  const done=()=>{b.classList.remove("lift");ov.remove()};
+  try{const an=big.animate([{transform:from,offset:0},{transform:"none",offset:.18,easing:"ease-out"},{transform:"scale(1.04)",offset:.3},{transform:"none",offset:.4},{transform:"none",offset:.82},{transform:from,offset:1}],{duration:2200,easing:"ease-in-out"});
+    setTimeout(()=>ov.classList.add("out"),1800);an.onfinish=done;an.oncancel=done;setTimeout(done,2600)}catch(e){setTimeout(done,2000)}
+}
 function hangGuess(l){const R=S.R,t=L[lang];if(S.locked||!R||R.kind!=="hang"||R.guess.includes(l))return;R.guess.push(l);R.last=l;
   if(R.word.includes(l)){tone([660]);say(l.toUpperCase());if(hangDone()){R.show=true;R.state="win";win();hangUI();setTimeout(joySnd,300);return}}
   else{R.miss++;S.firstTry=false;popSnd();if(R.miss>=R.max){hangLose();return}say(t.no)}
@@ -904,7 +941,7 @@ app.addEventListener("click",e=>{
   else if(a==="gate"){if(+b.dataset.v===S.gq.ans){S.pgate=true;S.gerr=false}else S.gerr=true;render()}
   else if(a==="pa"){S.pa=+b.dataset.v;S.rc=0;render()}
   else if(a==="reset"){if(S.rc){done={};hist={};act=[];try{Object.keys(localStorage).filter(k=>/^lv\d/.test(k)).forEach(k=>localStorage.removeItem(k));localStorage.removeItem("done");localStorage.removeItem("hist");localStorage.removeItem("act");localStorage.removeItem("tq")}catch(_){}tq={};S.rc=0;render()}else{S.rc=1;b.textContent=t.sure}}
-  else if(a==="stk"){const o=STK[+b.dataset.i];say(o[lang]);b.classList.remove("pop");void b.offsetWidth;b.classList.add("pop")}
+  else if(a==="stk"){stkShow(b,+b.dataset.i)}
   else if(a==="say")say(spoken());
   else if(a==="clr")initTrace();
   else if(a==="demo"){if(trHint)trHint()}
